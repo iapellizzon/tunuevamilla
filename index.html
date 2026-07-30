@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Milla — IA en criollo para tu pyme</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#121114;          /* negro: texto + fondos oscuros */
+  --ink-soft:#232228;
+  --paper:#F5F6FB;        /* blanco frío */
+  --white:#FFFFFF;
+  --amber:#8FA8EA;        /* acento sólido (azul suave) */
+  --amber-deep:#5A6FB8;   /* azul-violeta profundo para textos chicos */
+  --peri:#86E0D6;         /* aqua */
+  --mint:#C4A6F2;         /* violeta */
+  --grad-a:#86E0D6;       /* degradé aurora: aqua → azul → violeta */
+  --grad-b:#93B8F0;
+  --grad-c:#C4A6F2;
+  --slate:#5C5B66;
+  --slate-light:#B9B7C6;
+  --line:#E6E6F0;
+  --line-dark:#333142;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px}
+.eyebrow{
+  font-family:'Space Mono',monospace;
+  font-size:.78rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--amber-deep);
+  font-weight:700;
+}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.05}
+
+/* ---------- NAV ---------- */
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(244,245,247,.82);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:11px;font-family:'Space Grotesk';font-weight:700;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.brand .mark{width:26px;height:26px;flex:none}
+.nav-cta{
+  font-family:'Space Grotesk';font-weight:600;font-size:.92rem;
+  color:var(--ink);text-decoration:none;
+  border:1.5px solid var(--ink);border-radius:40px;padding:8px 20px;
+  transition:.2s;
+}
+.nav-cta:hover{background:var(--ink);color:var(--white)}
+
+/* ---------- HERO ---------- */
+.hero{padding:88px 0 72px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:-20% -10% auto -10%;height:82%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(40% 55% at 82% 6%,rgba(134,224,214,.30),transparent 70%),
+    radial-gradient(38% 52% at 10% 32%,rgba(147,184,240,.28),transparent 72%),
+    radial-gradient(46% 60% at 58% 0%,rgba(196,166,242,.26),transparent 70%);
+  filter:blur(6px);}
+.hero .wrap{position:relative;z-index:1}
+.hero .eyebrow{margin-bottom:22px;opacity:0;animation:rise .7s .1s forwards}
+.hero h1{
+  font-size:clamp(2.7rem,6.4vw,4.9rem);
+  font-weight:600;max-width:15ch;margin-bottom:26px;
+  opacity:0;animation:rise .7s .22s forwards;
+}
+.hero h1 .hl{position:relative;white-space:nowrap;color:var(--ink)}
+.hero h1 .hl::after{
+  content:"";position:absolute;left:-2px;right:-2px;bottom:.08em;height:.32em;
+  background:linear-gradient(90deg,var(--grad-a),var(--grad-b) 60%,var(--grad-c));z-index:-1;opacity:.55;transform:skewX(-4deg);
+}
+.hero p.lead{
+  font-size:clamp(1.08rem,1.7vw,1.32rem);color:var(--slate);
+  max-width:52ch;margin-bottom:38px;opacity:0;animation:rise .7s .34s forwards;
+}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:rise .7s .46s forwards}
+.btn{
+  font-family:'Space Grotesk';font-weight:600;font-size:1rem;text-decoration:none;
+  border-radius:44px;padding:15px 30px;transition:.2s;display:inline-flex;align-items:center;gap:9px;
+}
+.btn-primary{background:var(--ink);color:var(--white)}
+.btn-primary:hover{background:var(--ink-soft);transform:translateY(-2px)}
+.btn-ghost{color:var(--ink);border:1.5px solid var(--line);background:transparent}
+.btn-ghost:hover{border-color:var(--ink)}
+.btn svg{width:16px;height:16px}
+
+/* route in hero */
+.route{margin-top:70px;opacity:0;animation:rise .8s .6s forwards}
+.route-track{position:relative;height:2px;background:var(--line);margin:0 6px}
+.route-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--grad-a),var(--grad-b) 50%,var(--grad-c));width:0;animation:draw 1.4s .8s cubic-bezier(.6,0,.2,1) forwards}
+.route-stops{display:flex;justify-content:space-between;margin-top:-9px}
+.stop{display:flex;flex-direction:column;align-items:flex-start;flex:1;position:relative}
+.stop:last-child{flex:none}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--paper);border:3px solid var(--grad-a);margin-bottom:14px}
+.route-stops .stop:nth-child(2) .dot{border-color:var(--grad-b)}
+.route-stops .stop:nth-child(3) .dot{border-color:var(--grad-c)}
+.stop .km{font-family:'Space Mono';font-size:.72rem;letter-spacing:.12em;color:var(--amber-deep);font-weight:700;text-transform:uppercase;margin-bottom:3px}
+.stop .lbl{font-size:.92rem;color:var(--slate);max-width:20ch;line-height:1.4}
+.stop:nth-child(2){align-items:center;text-align:center}
+.stop:nth-child(2) .lbl{}
+.stop:last-child{align-items:flex-end;text-align:right}
+
+/* ---------- MANIFESTO ---------- */
+.manifesto{background:var(--white);padding:92px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.manifesto .grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:64px;align-items:start}
+.manifesto .eyebrow{margin-bottom:18px}
+.manifesto h2{font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:500;color:var(--slate);line-height:1.35;letter-spacing:-.01em}
+.manifesto h2 b{color:var(--ink);font-weight:600}
+.manifesto .side p{color:var(--slate);margin-bottom:18px;font-size:1.02rem}
+.manifesto .side p:last-child{margin-bottom:0}
+.name-note{border-left:3px solid var(--amber);padding:4px 0 4px 20px;margin-top:6px}
+.name-note .t{font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:1.05rem;margin-bottom:4px}
+
+/* ---------- PATH (signature) ---------- */
+.path{background:var(--ink);color:var(--white);padding:100px 0}
+.path .head{margin-bottom:64px;max-width:60ch}
+.path .eyebrow{color:var(--grad-a)}
+.path h2{font-size:clamp(2rem,3.4vw,2.9rem);font-weight:600;color:var(--white);margin-top:16px}
+.path h2 span{color:var(--slate-light)}
+.milestones{position:relative;padding-left:8px}
+.spine{position:absolute;left:15px;top:8px;bottom:40px;width:2px;background:var(--line-dark)}
+.spine-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(180deg,var(--grad-a),var(--grad-b) 55%,var(--grad-c));transition:height 1.2s cubic-bezier(.6,0,.2,1)}
+.milestones.in .spine-fill{height:100%}
+.ms{position:relative;padding-left:56px;padding-bottom:46px;opacity:0;transform:translateY(18px);transition:.6s}
+.milestones.in .ms{opacity:1;transform:none}
+.milestones.in .ms:nth-child(2){transition-delay:.12s}
+.milestones.in .ms:nth-child(3){transition-delay:.24s}
+.milestones.in .ms:nth-child(4){transition-delay:.36s}
+.milestones.in .ms:nth-child(5){transition-delay:.48s}
+.ms:last-child{padding-bottom:0}
+.ms .node{position:absolute;left:8px;top:2px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--grad-a);z-index:2}
+.ms:nth-child(3) .node{border-color:var(--grad-b)}
+.ms:nth-child(4) .node{border-color:var(--grad-c)}
+
+
+
+
+.ms .km{font-family:'Space Mono';font-size:.76rem;letter-spacing:.16em;color:var(--grad-a);font-weight:700;text-transform:uppercase}
+.ms h3{font-size:1.4rem;font-weight:600;color:var(--white);margin:6px 0 8px}
+.ms p{color:var(--slate-light);max-width:56ch;font-size:1.02rem}
+
+/* ---------- PROOF ---------- */
+.proof{background:var(--paper);padding:96px 0;text-align:center}
+.proof .eyebrow{margin-bottom:26px}
+.proof .bignum{font-family:'Space Grotesk';font-weight:700;font-size:clamp(4.2rem,13vw,9rem);line-height:.9;color:var(--ink);letter-spacing:-.03em}
+.proof .bignum .u{background:linear-gradient(120deg,var(--grad-a),var(--grad-b) 55%,var(--grad-c));-webkit-background-clip:text;background-clip:text;color:transparent;}
+.proof .cap{font-size:1.24rem;color:var(--ink);max-width:34ch;margin:20px auto 0;font-weight:500}
+.proof .sub{color:var(--slate);font-size:.98rem;margin-top:14px}
+.ministats{display:flex;justify-content:center;gap:0;margin-top:56px;flex-wrap:wrap;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.mstat{flex:1;min-width:200px;padding:30px 24px;border-right:1px solid var(--line)}
+.mstat:last-child{border-right:none}
+.mstat .n{font-family:'Space Grotesk';font-weight:700;font-size:2.2rem;color:var(--ink)}
+.mstat .l{font-size:.9rem;color:var(--slate);margin-top:4px}
+
+/* ---------- BIO ---------- */
+.bio{background:var(--white);padding:96px 0;border-top:1px solid var(--line)}
+.bio .grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center}
+.portrait{
+  aspect-ratio:1;border-radius:20px;
+  background:linear-gradient(150deg,var(--ink) 0%,var(--ink-soft) 100%);
+  position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:34px;
+}
+.portrait .initials{font-family:'Space Grotesk';font-weight:700;font-size:clamp(4rem,9vw,7rem);color:rgba(147,184,240,.26);position:absolute;top:18px;right:26px;letter-spacing:-.02em}
+.portrait .who{position:relative;z-index:2;color:var(--white)}
+.portrait .who .nm{font-family:'Space Grotesk';font-weight:600;font-size:1.5rem}
+.portrait .who .rl{color:var(--slate-light);font-size:.98rem;margin-top:2px}
+.portrait .ph{position:absolute;inset:0;background:
+  radial-gradient(circle at 78% 20%,rgba(134,224,214,.34),transparent 44%),
+  radial-gradient(circle at 18% 92%,rgba(196,166,242,.34),transparent 42%),radial-gradient(circle at 60% 60%,rgba(147,184,240,.22),transparent 50%);}
+.bio .eyebrow{margin-bottom:16px}
+.bio h2{font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:600;margin-bottom:20px;max-width:20ch}
+.bio p{color:var(--slate);margin-bottom:16px;font-size:1.05rem}
+.bio p b{color:var(--ink);font-weight:600}
+
+/* ---------- CTA / FOOTER ---------- */
+.cta{background:var(--ink);color:var(--white);padding:100px 0 0}
+.cta .top{text-align:center;max-width:40ch;margin:0 auto 56px}
+.cta .eyebrow{color:var(--amber);margin-bottom:18px}
+.cta h2{font-size:clamp(2.1rem,4vw,3.2rem);font-weight:600;color:var(--white);margin-bottom:30px}
+.cta .btn-primary{background:linear-gradient(120deg,var(--grad-a),var(--grad-c));color:var(--ink)}
+.cta .btn-primary:hover{filter:brightness(1.05)}
+.footer{border-top:1px solid var(--line-dark);margin-top:80px;padding:36px 0}
+.footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
+.footer .brand{color:var(--white)}
+.footer .links{display:flex;gap:26px}
+.footer a{color:var(--slate-light);text-decoration:none;font-size:.95rem;transition:.2s}
+.footer a:hover{color:var(--amber)}
+.footer .fine{color:var(--slate-light);font-size:.82rem;width:100%;padding-top:22px;border-top:1px solid var(--line-dark);margin-top:26px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+.reveal.in{opacity:1;transform:none}
+
+@keyframes rise{to{opacity:1;transform:none}}
+@keyframes draw{to{width:100%}}
+.hero .eyebrow,.hero h1,.hero p.lead,.hero-actions,.route{transform:translateY(20px)}
+
+@media (max-width:820px){
+  .manifesto .grid,.bio .grid{grid-template-columns:1fr;gap:40px}
+  .bio .grid{direction:ltr}
+  .portrait{max-width:340px}
+  .route-stops{flex-direction:column;gap:26px}
+  .stop{align-items:flex-start!important;text-align:left!important}
+  .route-track{display:none}
+  .stop .dot{margin-bottom:8px}
+  .ministats .mstat{border-right:none;border-bottom:1px solid var(--line)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  .hero .eyebrow,.hero h1,.hero p.lead,.hero-actions,.route{opacity:1;transform:none}
+  .route-fill{width:100%}.spine-fill{height:100%}
+  .reveal,.ms{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#" class="brand">
+      <svg class="mark" viewBox="0 0 32 32" fill="none">
+        <path d="M4 24 L14 8 L18 16 L28 24" stroke="#121114" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="14" cy="8" r="3.4" fill="#93B8F0"/>
+        <circle cx="28" cy="24" r="2.6" fill="#121114"/>
+      </svg>
+      Mi&nbsp;Milla
+    </a>
+    <a href="#contacto" class="nav-cta">Charlemos</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Consultoría en IA para pymes · Rosario</div>
+    <h1>La inteligencia artificial para tu empresa, <span class="hl">en criollo</span> y sin humo.</h1>
+    <p class="lead">Te ayudo a entender qué puede hacer hoy la IA por tu pyme, qué tareas podés automatizar y por dónde empezar. Sin tecnicismos, sin promesas mágicas y sin necesidad de que seas técnico.</p>
+    <div class="hero-actions">
+      <a href="#contacto" class="btn btn-primary">Charlemos
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#camino" class="btn btn-ghost">Cómo trabajo</a>
+    </div>
+
+    <div class="route">
+      <div class="route-track"><div class="route-fill"></div></div>
+      <div class="route-stops">
+        <div class="stop">
+          <div class="dot"></div>
+          <div class="km">Milla 0</div>
+          <div class="lbl">"Escucho hablar de IA pero no sé por dónde empezar."</div>
+        </div>
+        <div class="stop">
+          <div class="dot"></div>
+          <div class="km">Milla 1</div>
+          <div class="lbl">Primeras tareas automatizadas y tiempo recuperado.</div>
+        </div>
+        <div class="stop">
+          <div class="dot"></div>
+          <div class="km">Milla 2</div>
+          <div class="lbl">Tu empresa, operando en piloto automático.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="manifesto">
+  <div class="wrap grid">
+    <div class="main reveal">
+      <div class="eyebrow">Qué es Mi Milla</div>
+      <h2>La mayoría de las pymes no necesita <b>más tecnología</b>. Necesita <b>entenderla</b> y saber por dónde arrancar.</h2>
+    </div>
+    <div class="side reveal">
+      <p>Hoy hay demasiado ruido alrededor de la inteligencia artificial: mucha promesa, mucho tecnicismo y muy poca traducción a lo que realmente le sirve a una empresa que factura, contrata y quiere crecer.</p>
+      <p>Mi Milla existe para poner las cosas en claro y en criollo: qué puede hacer la IA por vos hoy, qué no, y cuál es el primer paso concreto.</p>
+      <div class="name-note">
+        <div class="t">¿Por qué "Mi Milla"?</div>
+        <p style="margin:0">Una milla es un tramo del camino. Te acompaño en el primero —el más difícil— para que la IA deje de ser una amenaza abstracta y empiece a ahorrarte tiempo y plata.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="path" id="camino">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">Cómo te acompaño</div>
+      <h2>El camino tiene etapas. <span>Las recorremos a tu ritmo, una milla a la vez.</span></h2>
+    </div>
+    <div class="milestones">
+      <div class="spine"><div class="spine-fill"></div></div>
+      <div class="ms">
+        <div class="node"></div>
+        <div class="km">Milla 01 · Entender</div>
+        <h3>Sacamos el humo del medio</h3>
+        <p>Charlas y encuentros para que vos y tu equipo entiendan qué es la IA, qué puede hacer hoy y qué es puro marketing. Sin siglas ni palabras raras.</p>
+      </div>
+      <div class="ms">
+        <div class="node"></div>
+        <div class="km">Milla 02 · Priorizar</div>
+        <h3>Encontramos dónde está el tiempo perdido</h3>
+        <p>Revisamos juntos tus procesos y detectamos qué tareas te comen más horas y cuáles conviene automatizar primero. Empezamos por donde más rinde.</p>
+      </div>
+      <div class="ms">
+        <div class="node"></div>
+        <div class="km">Milla 03 · Automatizar</div>
+        <h3>Ponemos las primeras tareas en piloto automático</h3>
+        <p>Implementamos las automatizaciones prioritarias y medimos, en horas concretas, cuánto tiempo recupera tu equipo cada mes.</p>
+      </div>
+      <div class="ms">
+        <div class="node"></div>
+        <div class="km">Milla 04 · Escalar</div>
+        <h3>Tu empresa gana autonomía</h3>
+        <p>Con las bases puestas, sumamos procesos y capacidades a tu ritmo. Vos decidís hasta dónde llegar; yo te acompaño el tramo que haga falta.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="proof">
+  <div class="wrap">
+    <div class="eyebrow reveal">No es teoría</div>
+    <div class="bignum reveal">115 <span class="u">jornadas</span></div>
+    <p class="cap reveal">es lo que una empresa recuperó en un año automatizando tareas administrativas.</p>
+    <p class="sub reveal">Caso real de una desarrolladora inmobiliaria de Rosario. Los números surgen de un relevamiento de 19 procesos.</p>
+    <div class="ministats reveal">
+      <div class="mstat"><div class="n">19</div><div class="l">procesos automatizados</div></div>
+      <div class="mstat"><div class="n">~900 hs</div><div class="l">recuperadas por año</div></div>
+      <div class="mstat"><div class="n">87%</div><div class="l">menos tiempo por tarea</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="bio">
+  <div class="wrap grid">
+    <div class="portrait reveal">
+      <div class="ph"></div>
+      <div class="initials">IP</div>
+      <div class="who">
+        <div class="nm">Ignacio Pellizzón</div>
+        <div class="rl">Fundador de Mi Milla</div>
+      </div>
+    </div>
+    <div class="txt reveal">
+      <div class="eyebrow">Quién está detrás</div>
+      <h2>Hablo los dos idiomas: el del negocio y el de la tecnología.</h2>
+      <p>Pasé quince años en el periodismo aprendiendo a hacer entendible lo complejo. Después me pasé al mundo de los sistemas y hoy lidero el área de tecnología de una empresa, donde construí desde cero el ecosistema que automatiza buena parte de su operación.</p>
+      <p>Esa mezcla es rara y es justamente lo que traigo: <b>sé traducir lo técnico al idioma de quien toma las decisiones</b>. No te voy a llenar de humo ni de palabras difíciles. Te voy a mostrar, con ejemplos y números, qué te conviene hacer.</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contacto">
+  <div class="wrap">
+    <div class="top">
+      <div class="eyebrow">Empecemos</div>
+      <h2>¿Tu empresa está lista para su primera milla?</h2>
+      <a href="mailto:hola@mimilla.com" class="btn btn-primary">Escribime
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+    <div class="footer">
+      <div class="wrap" style="padding:0">
+        <a href="#" class="brand">
+          <svg class="mark" viewBox="0 0 32 32" fill="none">
+            <path d="M4 24 L14 8 L18 16 L28 24" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="14" cy="8" r="3.4" fill="#93B8F0"/>
+            <circle cx="28" cy="24" r="2.6" fill="#FFFFFF"/>
+          </svg>
+          Mi&nbsp;Milla
+        </a>
+        <div class="links">
+          <a href="mailto:hola@mimilla.com">hola@mimilla.com</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Instagram</a>
+        </div>
+        <div class="fine">Mi Milla · Consultoría en inteligencia artificial para pymes · Rosario, Argentina · © 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+const io=new IntersectionObserver((es)=>{
+  es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.18});
+document.querySelectorAll('.reveal,.milestones').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
