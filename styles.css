@@ -140,8 +140,12 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .manifesto h2 b{color:var(--ink);font-weight:600}
 .manifesto .side p{color:var(--slate);margin-bottom:18px;font-size:1.02rem}
 .manifesto .side p:last-child{margin-bottom:0}
-.name-note{border-left:3px solid var(--amber);padding:4px 0 4px 20px;margin-top:6px;transition:border-color .3s var(--ease)}
-.name-note:hover{border-color:var(--grad-c)}
+.name-note{position:relative;padding:4px 0 4px 26px;margin-top:6px}
+.name-note::before{
+  content:"";position:absolute;left:2px;top:10px;width:8px;height:8px;border-radius:50%;
+  background:var(--amber);box-shadow:0 0 0 3px var(--paper);transition:background-color .3s var(--ease);
+}
+.name-note:hover::before{background:var(--grad-c)}
 .name-note .t{font-family:'Space Grotesk';font-weight:600;color:var(--ink);font-size:1.05rem;margin-bottom:4px}
 
 /* ---------- PATH (Cómo te acompaño) ---------- */
