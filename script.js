@@ -20,7 +20,7 @@
   }
 
   // ---------- Modal de contacto ----------
-  const WEB3FORMS_ACCESS_KEY = 'TU_ACCESS_KEY_DE_WEB3FORMS'; // reemplazar por la key real (https://web3forms.com)
+  const WEB3FORMS_ACCESS_KEY = 'f8dc97b1-ea5a-44b7-beb8-078c6a375e9a';
 
   const trigger = document.getElementById('contactTrigger');
   const overlay = document.getElementById('contactOverlay');
