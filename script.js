@@ -22,7 +22,9 @@
   // ---------- Modal de contacto ----------
   const WEB3FORMS_ACCESS_KEY = 'f8dc97b1-ea5a-44b7-beb8-078c6a375e9a';
 
-  const trigger = document.getElementById('contactTrigger');
+  // "Escribime" (mailto de respaldo) + "Charlemos" del nav y del hero (anchor #contacto
+  // de respaldo): todos abren el mismo modal.
+  const triggers = document.querySelectorAll('#contactTrigger, .js-contact-trigger');
   const overlay = document.getElementById('contactOverlay');
   const modal = document.getElementById('contactModal');
   const closeBtn = document.getElementById('contactClose');
@@ -30,7 +32,7 @@
   const submitBtn = document.getElementById('contactSubmit');
   const status = document.getElementById('contactStatus');
 
-  if (trigger && overlay && modal && form) {
+  if (triggers.length && overlay && modal && form) {
     let lastFocused = null;
 
     const focusableSelector = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
@@ -76,9 +78,11 @@
       }
     };
 
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault(); // evita el mailto: cuando JS está disponible
-      openModal();
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', (e) => {
+        e.preventDefault(); // evita el mailto:/scroll cuando JS está disponible
+        openModal();
+      });
     });
     closeBtn.addEventListener('click', closeModal);
     overlay.addEventListener('click', (e) => {
