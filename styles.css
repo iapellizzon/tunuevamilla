@@ -245,6 +245,59 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .footer a:hover::after{right:0}
 .footer .fine{color:var(--slate-light);font-size:.82rem;width:100%;padding-top:22px;border-top:1px solid var(--line-dark);margin-top:26px}
 
+/* ---------- MODAL / FORMULARIO DE CONTACTO ---------- */
+.modal-overlay{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;padding:24px;
+  background:rgba(18,17,20,.6);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  opacity:0;transition:opacity .25s var(--ease);
+}
+.modal-overlay[hidden]{display:none}
+.modal-overlay.is-open{opacity:1}
+.modal{
+  position:relative;width:100%;max-width:440px;max-height:calc(100dvh - 48px);overflow-y:auto;
+  background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);
+  padding:36px 32px 32px;
+  transform-origin:center;transform:scale(.95);opacity:0;
+  transition:transform .28s cubic-bezier(.23,1,.32,1),opacity .22s var(--ease);
+}
+.modal-overlay.is-open .modal{transform:scale(1);opacity:1}
+.modal-close{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;color:var(--slate);background:transparent;border:none;
+  transition:background-color .2s var(--ease),color .2s var(--ease),transform .15s var(--ease);
+}
+.modal-close svg{width:16px;height:16px}
+.modal-close:hover{background:var(--paper);color:var(--ink)}
+.modal-close:active{transform:scale(.94)}
+.modal h3{font-size:clamp(1.3rem,3vw,1.6rem);font-weight:600;margin:14px 0 6px;max-width:26ch}
+.modal .modal-lead{color:var(--slate);font-size:.98rem;margin-bottom:24px}
+
+#contactForm{display:flex;flex-direction:column;gap:16px}
+.field{display:flex;flex-direction:column;gap:6px;font-size:.88rem;color:var(--slate);font-weight:500}
+.field input,.field textarea{
+  font-family:'Inter',sans-serif;font-size:1rem;color:var(--ink);
+  border:1.5px solid var(--line);border-radius:12px;padding:12px 14px;background:var(--paper);
+  transition:border-color .2s var(--ease),background-color .2s var(--ease);resize:vertical;
+}
+.field input:hover,.field textarea:hover{border-color:var(--slate-light)}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--amber-deep);background:var(--white)}
+.field textarea{min-height:96px}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+
+#contactForm .btn-primary{justify-content:center;margin-top:4px}
+#contactForm .btn-primary:active{transform:scale(.98)}
+#contactForm .btn-primary:disabled{opacity:.6;cursor:default;transform:none;box-shadow:none}
+.form-status{font-size:.9rem;min-height:1.2em;text-align:center;color:var(--slate)}
+.form-status[data-state="error"]{color:var(--ink);font-weight:500}
+.form-status[data-state="success"]{color:var(--ink);font-weight:500}
+.form-status a{color:var(--amber-deep);text-decoration:underline}
+
+@media (max-width:480px){
+  .modal{padding:28px 22px 24px;border-radius:16px}
+}
+
 /* ---------- scroll reveal genérico ---------- */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s cubic-bezier(.2,.7,.2,1),transform .7s cubic-bezier(.2,.7,.2,1)}
 .reveal.in{opacity:1;transform:none}

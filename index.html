@@ -154,7 +154,7 @@
     <div class="top reveal">
       <div class="eyebrow">Empecemos</div>
       <h2>¿Tu empresa está lista para su nueva milla?</h2>
-      <a href="mailto:hola@tunuevamilla.com" class="btn btn-primary">Escribime
+      <a href="mailto:hola@tunuevamilla.com" class="btn btn-primary" id="contactTrigger">Escribime
         <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </a>
     </div>
@@ -178,6 +178,40 @@
     </div>
   </div>
 </section>
+
+<div class="modal-overlay" id="contactOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" id="contactModal">
+    <button type="button" class="modal-close" id="contactClose" aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="eyebrow">Escribime</div>
+    <h3 id="contactModalTitle">Contame en dos líneas qué necesita tu empresa</h3>
+    <p class="modal-lead">Te respondo yo mismo, directo a tu correo.</p>
+
+    <form id="contactForm" novalidate>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+      <label class="field">
+        <span>Nombre</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Tu nombre">
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="vos@tuempresa.com">
+      </label>
+      <label class="field">
+        <span>Contame brevemente qué necesitás</span>
+        <textarea name="message" required rows="4" placeholder="Qué te gustaría automatizar o entender sobre IA en tu pyme"></textarea>
+      </label>
+
+      <button type="submit" class="btn btn-primary" id="contactSubmit">
+        <span class="btn-label">Enviar mensaje</span>
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
