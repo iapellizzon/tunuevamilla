@@ -242,11 +242,14 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .footer{border-top:1px solid var(--line-dark);margin-top:80px;padding:36px 0}
 .footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
 .footer .brand{color:var(--white)}
-.footer .links{display:flex;gap:26px}
+.footer .links{display:flex;align-items:center;gap:26px}
 .footer a{color:var(--slate-light);text-decoration:none;font-size:.95rem;position:relative;transition:color .2s var(--ease)}
 .footer a::after{content:"";position:absolute;left:0;right:100%;bottom:-3px;height:1px;background:var(--amber);transition:right .3s var(--ease)}
 .footer a:hover{color:var(--amber)}
 .footer a:hover::after{right:0}
+.footer a.social-icon{display:inline-flex;transition:color .2s var(--ease),transform .2s var(--ease)}
+.footer a.social-icon::after{content:none}
+.footer a.social-icon:hover{transform:translateY(-1px)}
 .footer .fine{color:var(--slate-light);font-size:.82rem;width:100%;padding-top:22px;border-top:1px solid var(--line-dark);margin-top:26px}
 
 /* ---------- MODAL / FORMULARIO DE CONTACTO ---------- */
