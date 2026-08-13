@@ -120,7 +120,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 /* route en el hero */
 .route{margin-top:70px;opacity:0;transform:translateY(20px);animation:rise .8s .6s forwards}
 .route-track{position:relative;height:2px;background:var(--line);margin:0 6px}
-.route-fill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--grad-a),var(--grad-b) 50%,var(--grad-c));width:0;animation:draw 1.4s .8s cubic-bezier(.6,0,.2,1) forwards}
+.route-fill{position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(90deg,var(--grad-a),var(--grad-b) 50%,var(--grad-c));transform:scaleX(0);transform-origin:left;animation:draw 1.4s .8s cubic-bezier(.6,0,.2,1) forwards}
 .route-stops{display:flex;justify-content:space-between;margin-top:-9px}
 .stop{display:flex;flex-direction:column;align-items:flex-start;flex:1;position:relative}
 .stop:last-child{flex:none}
@@ -153,8 +153,8 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 
 .milestones{position:relative;padding-left:8px}
 .spine{position:absolute;left:15px;top:8px;bottom:40px;width:2px;background:var(--line-dark)}
-.spine-fill{position:absolute;left:0;top:0;width:100%;height:0;background:linear-gradient(180deg,var(--grad-a),var(--grad-b) 55%,var(--grad-c));transition:height 1.2s cubic-bezier(.6,0,.2,1)}
-.milestones.in .spine-fill{height:100%}
+.spine-fill{position:absolute;left:0;top:0;width:100%;height:100%;background:linear-gradient(180deg,var(--grad-a),var(--grad-b) 55%,var(--grad-c));transform:scaleY(0);transform-origin:top;transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+.milestones.in .spine-fill{transform:scaleY(1)}
 
 .ms{position:relative;padding-left:56px;padding-bottom:46px;opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
 .milestones.in .ms{opacity:1;transform:none}
@@ -303,7 +303,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
 .reveal.in{opacity:1;transform:none}
 
 @keyframes rise{to{opacity:1;transform:none}}
-@keyframes draw{to{width:100%}}
+@keyframes draw{to{transform:scaleX(1)}}
 
 /* =========================================================
    RESPONSIVE
@@ -371,7 +371,7 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
   html{scroll-behavior:auto}
   *{animation:none!important;transition:none!important}
   .hero .eyebrow,.hero h1,.hero p.lead,.hero-actions,.route{opacity:1;transform:none}
-  .route-fill{width:100%}
-  .spine-fill{height:100%}
+  .route-fill{transform:scaleX(1)}
+  .spine-fill{transform:scaleY(1)}
   .reveal,.ms,.mstat{opacity:1;transform:none}
 }
