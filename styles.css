@@ -89,6 +89,9 @@ nav .wrap{display:flex;align-items:center;justify-content:space-between;height:6
     radial-gradient(38% 52% at 10% 32%,rgba(147,184,240,.28),transparent 72%),
     radial-gradient(46% 60% at 58% 0%,rgba(196,166,242,.26),transparent 70%);
   filter:blur(6px);}
+.hero-illustration{position:absolute;top:6%;right:-2%;width:clamp(280px,30vw,440px);height:clamp(340px,36vw,540px);z-index:0;pointer-events:none}
+@media (max-width:1100px){.hero-illustration{top:14%;right:-6%;width:clamp(220px,22vw,300px);height:clamp(280px,28vw,380px)}}
+@media (max-width:960px){.hero-illustration{display:none}}
 .hero .wrap{position:relative;z-index:1}
 .hero .eyebrow{margin-bottom:22px;opacity:0;transform:translateY(20px);animation:rise .7s .1s forwards}
 .hero h1{
