@@ -1,22 +1,27 @@
 (() => {
-  // Scroll reveal: agrega .in cuando el elemento entra en viewport.
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in');
-        io.unobserve(entry.target);
-      }
+  // Tema claro/oscuro: claro por defecto; el botón alterna y recuerda la elección.
+  // (El tema guardado se aplica antes del primer pintado con un script en el <head>.)
+  // Las animaciones al scrollear y la nav compacta viven en motion.js.
+  const themeToggle = document.getElementById('themeToggle');
+  const themeColor = document.querySelector('meta[name="theme-color"]');
+  const applyTheme = (t) => {
+    const dark = t === 'dark';
+    if (dark) document.documentElement.setAttribute('data-theme', 'dark');
+    else document.documentElement.removeAttribute('data-theme');
+    if (themeColor) themeColor.content = dark ? '#121114' : '#FFFFFF';
+    if (themeToggle) {
+      const label = dark ? 'Cambiar a tema claro' : 'Cambiar a tema oscuro';
+      themeToggle.setAttribute('aria-label', label);
+      themeToggle.title = label;
+    }
+  };
+  applyTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      try { localStorage.setItem('tnm-theme', next); } catch (e) {}
     });
-  }, { threshold: .18 });
-
-  document.querySelectorAll('.reveal, .milestones, .ministats').forEach((el) => io.observe(el));
-
-  // Nav: sombra sutil apenas se hace scroll, para separarla del contenido.
-  const nav = document.querySelector('nav');
-  if (nav) {
-    const onScroll = () => nav.classList.toggle('is-scrolled', window.scrollY > 8);
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   // ---------- Modal de contacto ----------
