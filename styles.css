@@ -291,30 +291,6 @@ html[data-theme="dark"] .theme-toggle .i-moon{display:none}
 .tnm-ms--photo:hover .tnm-ms__bg{opacity:.32;transform:scale(1.04)}
 .tnm-ms__scrim{position:absolute;inset:0;z-index:1;background:linear-gradient(100deg,var(--bg) 34%,color-mix(in srgb,var(--bg) 82%,transparent) 58%,color-mix(in srgb,var(--bg) 40%,transparent) 100%)}
 
-/* ---------- Caso real ---------- */
-.proof{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
-.tnm-bignum{width:100%;text-align:center}
-.tnm-bignum__v{font-weight:700;font-size:var(--fs-bignum);line-height:.9;color:var(--text);letter-spacing:-.03em;overflow-wrap:break-word}
-.tnm-bignum__u{background:var(--grad-aurora-diag);-webkit-background-clip:text;background-clip:text;color:transparent}
-.tnm-bignum__cap{font-size:1.24rem;color:var(--text);max-width:34ch;margin:20px auto 0;font-weight:500;line-height:1.45}
-.tnm-bignum__sub{color:var(--text-muted);font-size:.98rem;margin:14px auto 0;max-width:60ch}
-.proof__cards{width:100%;margin-top:clamp(20px,4vw,38px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:22px;text-align:left}
-.pcard{background:var(--bg-subtle);border-radius:var(--radius-lg);padding:clamp(26px,4vw,38px);display:flex;flex-direction:column;gap:26px;transition:box-shadow .3s var(--ease)}
-.pcard:hover{box-shadow:var(--shadow-card)}
-.pcard__n{font-weight:700;font-size:clamp(2.6rem,6vw,3.4rem);letter-spacing:-.03em;line-height:1}
-.pcard__l{color:var(--text-muted);margin-top:6px}
-.bars{display:flex;flex-direction:column;gap:14px}
-.bar{display:flex;flex-direction:column;gap:6px}
-.bar__lbl{display:flex;justify-content:space-between;gap:12px;font-size:var(--fs-small);color:var(--text-muted)}
-.bar__lbl--strong{color:var(--text);font-weight:600}
-.bar__track{height:14px;border-radius:999px;background:var(--border);overflow:hidden}
-.bar__fill{height:100%;border-radius:999px}
-.bar__fill--before{width:100%;background:var(--text-muted)}
-.bar__fill--after{background:var(--grad-aurora)}
-.ticks{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:clamp(5px,1.2vw,8px)}
-.tick{aspect-ratio:1;border-radius:7px;border:1.5px solid var(--grad-b);background:var(--bg);display:flex;align-items:center;justify-content:center;transition:border-color .25s var(--ease)}
-.tick svg{width:62%;stroke:var(--text);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;transition:opacity .25s var(--ease),transform .25s var(--ease)}
-
 /* ---------- Quién está detrás ---------- */
 .bio{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(38px,6vw,72px);align-items:center}
 .bio__photo{max-width:460px;width:100%}
