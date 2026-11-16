@@ -42,7 +42,22 @@
 
     const focusableSelector = 'a[href],button:not([disabled]),input,textarea,select,[tabindex]:not([tabindex="-1"])';
 
-    const openModal = () => {
+    const messageField = form.querySelector('textarea[name="message"]');
+    let lastPrefill = '';
+    let currentTopic = '';
+
+    // Cada botón puede traer data-contact-message (texto precargado en el mensaje) y
+    // data-contact-topic (se agrega al asunto del mail). Sin esos atributos, el modal
+    // queda como siempre ("Charlemos").
+    const openModal = (trigger) => {
+      const prefill = (trigger && trigger.dataset && trigger.dataset.contactMessage) || '';
+      currentTopic = (trigger && trigger.dataset && trigger.dataset.contactTopic) || '';
+      if (prefill) {
+        messageField.value = prefill;
+      } else if (messageField.value === lastPrefill) {
+        messageField.value = ''; // no arrastrar una precarga anterior
+      }
+      lastPrefill = prefill;
       lastFocused = document.activeElement;
       overlay.hidden = false;
       document.body.style.overflow = 'hidden';
@@ -86,7 +101,7 @@
     triggers.forEach((trigger) => {
       trigger.addEventListener('click', (e) => {
         e.preventDefault(); // evita el mailto:/scroll cuando JS está disponible
-        openModal();
+        openModal(trigger);
       });
     });
     closeBtn.addEventListener('click', closeModal);
@@ -107,7 +122,9 @@
 
       const data = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: 'Nuevo contacto desde tunuevamilla.com',
+        subject: currentTopic
+          ? 'Nuevo contacto desde tunuevamilla.com: ' + currentTopic
+          : 'Nuevo contacto desde tunuevamilla.com',
         from_name: 'Tu Nueva Milla — Landing',
         name: form.name.value.trim(),
         email: form.email.value.trim(),

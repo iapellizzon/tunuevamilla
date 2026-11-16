@@ -50,7 +50,7 @@
       <li><a class="nav__link" href="/lo-que-ofrecemos" aria-current="page">Lo que ofrecemos</a></li>
     </ul>
     <div class="nav__actions">
-      <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary tnm-btn--sm">Quiero la clase</a>
+      <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary tnm-btn--sm js-contact-trigger" data-contact-topic="Clase “IA en criollo”" data-contact-message="Quiero la clase “IA en criollo”.">Quiero la clase</a>
     </div>
   </div>
 </nav>
@@ -78,7 +78,7 @@
             <p class="ofr-km">Milla 1 · Entender</p>
           </div>
           <div class="ofr-card">
-            <h2>Clase "IA en criollo" en tu empresa</h2>
+            <h2>Clase “IA en criollo” en tu empresa</h2>
             <p>Unas 2 horas para que dueños y equipo entiendan qué es la IA, cómo funciona y cómo se aplica a las tareas de todos los días, con ejemplos de su rubro.</p>
             <div class="ofr-price">
               <span class="ofr-price__amount">$500.000</span>
@@ -92,7 +92,7 @@
             </ul>
             <p class="ofr-aside"><strong>¿Tu equipo ya usa IA?</strong> Hay una clase avanzada, más práctica y técnica, para dar el paso siguiente. A presupuestar.</p>
             <div class="ofr-card__foot">
-              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary">Quiero la clase</a>
+              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary js-contact-trigger" data-contact-topic="Clase “IA en criollo”" data-contact-message="Quiero la clase “IA en criollo”.">Quiero la clase</a>
             </div>
           </div>
         </article>
@@ -124,7 +124,7 @@
                 <span class="ofr-price__amount">A presupuestar</span>
                 <span class="ofr-price__note">Según el tamaño de tu empresa y las áreas a recorrer.</span>
               </div>
-              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20un%20diagn%C3%B3stico" class="tnm-btn tnm-btn--ghost">Pedir presupuesto</a>
+              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20un%20diagn%C3%B3stico" class="tnm-btn tnm-btn--ghost js-contact-trigger" data-contact-topic="Presupuesto de diagnóstico" data-contact-message="Quiero un presupuesto para el diagnóstico.">Pedir presupuesto</a>
             </div>
           </div>
         </article>
@@ -158,7 +158,7 @@
                 <span class="ofr-price__amount">A presupuestar</span>
                 <span class="ofr-price__note">Por proyecto, según lo que definamos en el diagnóstico.</span>
               </div>
-              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20implementar%20IA" class="tnm-btn tnm-btn--ghost">Pedir presupuesto</a>
+              <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20implementar%20IA" class="tnm-btn tnm-btn--ghost js-contact-trigger" data-contact-topic="Presupuesto de implementación" data-contact-message="Quiero un presupuesto para la implementación.">Pedir presupuesto</a>
             </div>
           </div>
         </article>
@@ -195,8 +195,8 @@
       <h2 id="ofr-close-title">¿En qué <span class="ofr-grad">milla</span> está tu empresa?</h2>
       <p class="ofr-close__lead">Contame dónde estás y te digo por dónde arrancaría yo.</p>
       <div class="ofr-close__cta">
-        <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary">Quiero la clase</a>
-        <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20un%20diagn%C3%B3stico" class="tnm-btn tnm-btn--ghost">Pedir un diagnóstico</a>
+        <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20la%20clase" class="tnm-btn tnm-btn--primary js-contact-trigger" data-contact-topic="Clase “IA en criollo”" data-contact-message="Quiero la clase “IA en criollo”.">Quiero la clase</a>
+        <a href="mailto:hola@tunuevamilla.com?subject=Quiero%20un%20diagn%C3%B3stico" class="tnm-btn tnm-btn--ghost js-contact-trigger" data-contact-topic="Presupuesto de diagnóstico" data-contact-message="Quiero un presupuesto para el diagnóstico.">Pedir un diagnóstico</a>
       </div>
     </section>
   </main>
@@ -219,5 +219,40 @@
   </footer>
 </div>
 
+<div class="modal-overlay" id="contactOverlay" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" id="contactModal">
+    <button type="button" class="modal-close" id="contactClose" aria-label="Cerrar formulario">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <div class="tnm-eyebrow">Escribime</div>
+    <h3 id="contactModalTitle">Contame en dos líneas qué necesita tu empresa</h3>
+    <p class="modal-lead">Te respondo yo mismo, directo a tu correo.</p>
+
+    <form id="contactForm" novalidate>
+      <input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off">
+
+      <label class="tnm-field">
+        <span>Nombre</span>
+        <input type="text" name="name" required autocomplete="name" placeholder="Tu nombre">
+      </label>
+      <label class="tnm-field">
+        <span>Email</span>
+        <input type="email" name="email" required autocomplete="email" placeholder="vos@tuempresa.com">
+      </label>
+      <label class="tnm-field">
+        <span>Contame brevemente qué necesitás</span>
+        <textarea name="message" required rows="4" placeholder="Qué te gustaría automatizar o entender sobre IA en tu pyme"></textarea>
+      </label>
+
+      <button type="submit" class="tnm-btn tnm-btn--primary tnm-btn--block" id="contactSubmit">
+        <span class="btn-label">Enviar mensaje</span>
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</div>
+
+<script src="/script.js"></script>
 </body>
 </html>
