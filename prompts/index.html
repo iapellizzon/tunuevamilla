@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>5 prompts para tu pyme — Tu Nueva Milla</title>
+<meta name="description" content="Cinco prompts listos para copiar y usar con cualquier IA: ChatGPT, Claude, Gemini o Copilot. IA en criollo, sin humo.">
+<meta name="theme-color" content="#121114">
+<link rel="canonical" href="https://tunuevamilla.com/prompts/">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tunuevamilla.com/prompts/">
+<meta property="og:site_name" content="Tu Nueva Milla">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="5 prompts para poner a trabajar a la IA en tu pyme">
+<meta property="og:description" content="Listos para copiar y usar con ChatGPT, Claude, Gemini o Copilot. IA en criollo, sin humo.">
+<meta property="og:image" content="https://tunuevamilla.com/images/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath d='M4 24 L14 8 L18 16 L28 24' fill='none' stroke='%23121114' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='14' cy='8' r='3.4' fill='%2393B8F0'/%3E%3Ccircle cx='28' cy='24' r='2.6' fill='%23121114'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
+<style>
+:root{
+  --ink:#121114;--ink-2:#1B1A1F;--ink-3:#232228;--line:#333142;
+  --white:#FFFFFF;--soft:#B9B7C6;--muted:#8A8898;
+  --a:#86E0D6;--b:#93B8F0;--c:#C4A6F2;
+  --grad:linear-gradient(90deg,var(--a),var(--b) 50%,var(--c));
+  --ease:cubic-bezier(.2,.7,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--ink);color:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative}
+body::before,body::after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(90px);pointer-events:none}
+body::before{width:520px;height:460px;top:-160px;right:-140px;background:var(--a);opacity:.16}
+body::after{width:520px;height:520px;bottom:-220px;left:-180px;background:var(--c);opacity:.14}
+.wrap{max-width:860px;margin:0 auto;padding:0 22px}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--b);outline-offset:3px;border-radius:6px}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.mono{font-family:'Space Mono',monospace;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-height:1.08}
+
+nav{padding:22px 0}
+.brand{display:inline-flex;align-items:center;gap:10px;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:700;font-size:1.1rem;text-decoration:none}
+.brand .mark{width:30px;height:30px;background:var(--white);border-radius:9px;padding:3px}
+
+header{padding:34px 0 26px}
+header .mono{color:var(--a)}
+header h1{font-size:clamp(2.1rem,6.4vw,3.6rem);font-weight:600;margin:14px 0 18px;max-width:17ch}
+header p{color:var(--soft);font-size:1.08rem;max-width:58ch}
+.tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.tools span{font-size:.82rem;color:var(--soft);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+
+.tips{margin:30px 0 8px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tip{background:var(--ink-2);border:1px solid var(--line);border-radius:16px;padding:16px}
+.tip b{display:block;font-family:'Space Grotesk',system-ui,sans-serif;font-size:1rem;margin-bottom:4px}
+.tip p{color:var(--soft);font-size:.9rem;line-height:1.45}
+.tip .n{font-family:'Space Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.16em;color:var(--b)}
+
+/* ruta con mojones */
+.route{position:relative;margin-top:34px;padding-left:34px}
+.route::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:linear-gradient(var(--a),var(--b),var(--c));opacity:.55;border-radius:2px}
+.card{position:relative;background:var(--ink-2);border:1px solid var(--line);border-radius:20px;padding:24px 22px 22px;margin-bottom:22px;transition:border-color .3s var(--ease)}
+.card:hover{border-color:#4a4760}
+.card::before{content:"";position:absolute;left:-31px;top:28px;width:16px;height:16px;border-radius:50%;background:var(--ink);border:3px solid var(--b);box-shadow:0 0 0 6px rgba(147,184,240,.12)}
+.card .km{color:var(--a)}
+.card h2{font-size:clamp(1.3rem,3.4vw,1.6rem);font-weight:600;margin:6px 0 8px}
+.card .what{color:var(--soft);font-size:1rem;margin-bottom:14px}
+.badge{display:inline-block;font-size:.78rem;color:var(--ink);background:var(--grad);border-radius:999px;padding:3px 11px;font-weight:600;margin-bottom:12px}
+.prompt{position:relative;background:#0D0C0F;border:1px solid var(--line);border-radius:14px;padding:18px 18px 18px;font-family:'Inter',sans-serif;font-size:.95rem;color:#E9E8F0;white-space:pre-wrap;word-wrap:break-word;line-height:1.6}
+.prompt .fill{color:var(--b);font-weight:600}
+.row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px;flex-wrap:wrap}
+.hint{color:var(--muted);font-size:.85rem}
+.copy{appearance:none;border:0;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600;font-size:1rem;color:var(--ink);background:var(--grad);border-radius:999px;padding:12px 22px;display:inline-flex;align-items:center;gap:8px;transition:transform .2s var(--ease),filter .2s}
+.copy:hover{filter:brightness(1.06)}
+.copy:active{transform:scale(.97)}
+.copy.ok{background:var(--white)}
+.copy svg{width:18px;height:18px}
+
+.cta{margin:42px 0 30px;text-align:center;background:var(--ink-2);border:1px solid var(--line);border-radius:24px;padding:36px 24px;position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;width:340px;height:240px;top:-120px;left:50%;transform:translateX(-50%);background:var(--b);filter:blur(80px);opacity:.18}
+.cta h2{position:relative;font-size:clamp(1.5rem,4.4vw,2.2rem);font-weight:600;margin-bottom:10px}
+.cta p{position:relative;color:var(--soft);max-width:48ch;margin:0 auto 22px}
+.cta .btn{position:relative;display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-family:'Space Grotesk',system-ui,sans-serif;font-weight:600;font-size:1.05rem;color:var(--ink);background:var(--grad);border-radius:999px;padding:14px 26px}
+.cta .alt{position:relative;display:block;margin-top:14px;color:var(--muted);font-size:.9rem}
+
+footer{color:var(--muted);font-size:.85rem;padding:10px 0 40px;text-align:center}
+footer a{color:var(--soft)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,30px);opacity:0;background:var(--white);color:var(--ink);font-weight:600;font-size:.95rem;padding:11px 20px;border-radius:999px;transition:all .3s var(--ease);pointer-events:none;z-index:10}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:680px){
+  .tips{grid-template-columns:1fr}
+  .route{padding-left:24px}
+  .route::before{left:5px}
+  .card{padding:20px 16px}
+  .card::before{left:-25px;width:14px;height:14px}
+  .copy{width:100%;justify-content:center}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<nav><div class="wrap">
+  <a href="/" class="brand">
+    <svg class="mark" viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M4 24 L14 8 L18 16 L28 24" stroke="#121114" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="14" cy="8" r="3.4" fill="#93B8F0"/><circle cx="28" cy="24" r="2.6" fill="#121114"/></svg>
+    Tu&nbsp;Nueva&nbsp;Milla
+  </a>
+</div></nav>
+
+<main class="wrap">
+<header>
+  <div class="mono">Regalo para lectores · IA en criollo</div>
+  <h1>5 prompts para poner a <span class="grad">trabajar a la IA</span> en tu pyme</h1>
+  <p>No hace falta saber de tecnología: si sabés chatear, la podés usar. Copiá cualquiera de estos pedidos, completá lo que está entre <span class="grad" style="font-weight:600">[corchetes]</span> y pegalo en la IA que uses.</p>
+  <div class="tools"><span>ChatGPT</span><span>Claude</span><span>Gemini</span><span>Copilot</span></div>
+
+  <div class="tips">
+    <div class="tip"><span class="n">TIP 1</span><b>Completá los corchetes</b><p>Cuanto más le contás de tu negocio, mejor responde.</p></div>
+    <div class="tip"><span class="n">TIP 2</span><b>Pedile, no le preguntes</b><p>No es Google: la IA rinde cuando le das una tarea concreta.</p></div>
+    <div class="tip"><span class="n">TIP 3</span><b>Cuidá tus datos</b><p>No pegues claves, CUIT, cuentas bancarias ni datos personales de clientes.</p></div>
+  </div>
+</header>
+
+<section class="route" aria-label="Los 5 prompts">
+
+  <article class="card" id="p1">
+    <div class="mono km">Milla 01</div>
+    <h2>¿Por dónde empiezo con la IA en mi empresa?</h2>
+    <p class="what">Te entrevista sobre tu negocio y te devuelve las 3 tareas que más conviene empezar a hacer con IA, ordenadas por impacto y facilidad.</p>
+    <div class="prompt" data-prompt>Actuá como consultor de pymes que explica la IA sin tecnicismos. Tengo una empresa de <span class="fill">[rubro]</span> con <span class="fill">[cantidad]</span> empleados. Antes de recomendarme nada, haceme 5 preguntas, de a una, sobre cómo trabajamos y qué tareas nos comen más tiempo. Con mis respuestas, proponeme las 3 tareas que más conviene empezar a hacer con IA, ordenadas por impacto y facilidad. Para cada una, decime qué ganaría y cuál sería el primer paso concreto.</div>
+    <div class="row"><span class="hint">Ideal para arrancar</span><button class="copy" data-id="1" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar prompt</span></button></div>
+  </article>
+
+  <article class="card" id="p2">
+    <div class="mono km">Milla 02</div>
+    <h2>El tablero de reclamos</h2>
+    <p class="what">Le pegás los reclamos o consultas del día y te los ordena por urgencia, con un resumen, a qué área derivarlos y un borrador de respuesta para cada uno.</p>
+    <div class="prompt" data-prompt>Te voy a pegar los reclamos y consultas de clientes que recibimos hoy. Armame una tabla ordenada por urgencia (alta, media, baja) con estas columnas: cliente, resumen en una línea, urgencia y por qué, área a la que hay que derivarlo y un borrador de respuesta breve y cordial. Si a algún reclamo le falta información para responder, marcalo y decime qué preguntar.
+Reclamos: <span class="fill">[pegar acá]</span></div>
+    <div class="row"><span class="hint">Atención al cliente</span><button class="copy" data-id="2" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar prompt</span></button></div>
+  </article>
+
+  <article class="card" id="p3">
+    <div class="mono km">Milla 03</div>
+    <h2>¿Qué me dicen mis ventas? (en palabras)</h2>
+    <p class="what">Le pasás las ventas del último año y te dice qué producto viene cayendo, qué cliente dejó de comprar y en qué meses conviene reforzar el stock.</p>
+    <div class="prompt" data-prompt>Adjunto las ventas del último año <span class="fill">[o pegarlas acá]</span>. Analizalas como si fueras el gerente comercial y respondeme en lenguaje simple: 1) qué productos vienen cayendo y cuáles creciendo, 2) qué clientes dejaron de comprar o compran menos que antes, 3) en qué meses conviene reforzar el stock y por qué, 4) una alerta que yo no esté viendo. Cerrá con 3 acciones concretas para el próximo mes.</div>
+    <div class="row"><span class="hint">Ventas y stock</span><button class="copy" data-id="3" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar prompt</span></button></div>
+  </article>
+
+  <article class="card" id="p4">
+    <div class="mono km">Milla 04</div>
+    <h2>Las noticias de tu sector, filtradas con tu criterio</h2>
+    <p class="what">Busca las noticias de la semana de tu rubro y te deja solo las 5 que más te afectan, con por qué te importan, qué podrías hacer y el link a la fuente.</p>
+    <span class="badge">Usala en una IA con búsqueda en internet</span>
+    <div class="prompt" data-prompt>Actuá como mi asistente de inteligencia de negocios. Trabajo en <span class="fill">[rubro]</span> en <span class="fill">[ciudad o región]</span>. Lo que más me importa seguir es: <span class="fill">[por ejemplo: costos de materiales, créditos, cambios de normativa, competidores, tendencias de consumo]</span>. Buscá en internet las noticias más importantes de los últimos 7 días sobre mi sector y armame un resumen con las 5 que más me afectan. Para cada una: título, de qué se trata en dos líneas, por qué me importa a mí y qué podría hacer al respecto. Incluí siempre el link a la fuente. Descartá lo que sea relleno o no tenga impacto en mi negocio.</div>
+    <div class="row"><span class="hint">Para leer cada lunes</span><button class="copy" data-id="4" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar prompt</span></button></div>
+  </article>
+
+  <article class="card" id="p5">
+    <div class="mono km">Milla 05</div>
+    <h2>Tu Excel, convertido en tablero</h2>
+    <p class="what">Le subís un Excel de ventas, compras, gastos o stock y te arma un tablero interactivo con gráficos, números clave y filtros, fácil de entender.</p>
+    <span class="badge">Funciona mejor en Claude o ChatGPT</span>
+    <div class="prompt" data-prompt>Te adjunto un Excel con <span class="fill">[ventas / compras / gastos / stock]</span>. Armame un dashboard interactivo y fácil de entender para alguien que no es técnico. Incluí: los 3 o 4 números clave arriba (totales, promedios, variación), gráficos claros de la evolución en el tiempo y de los principales <span class="fill">[productos / clientes / proveedores]</span>, y filtros por fecha y categoría. Usá colores sobrios y títulos en lenguaje simple. Debajo del tablero, escribí en 3 líneas qué es lo más importante que muestran los datos.</div>
+    <div class="row"><span class="hint">De planilla a gráfico</span><button class="copy" data-id="5" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span>Copiar prompt</span></button></div>
+  </article>
+
+</section>
+
+<section class="cta" id="clase">
+  <h2>¿Querés que tu equipo <span class="grad">aprenda a usarla</span>?</h2>
+  <p>Doy una clase práctica para pymes: qué es la IA, cómo pedirle las cosas y qué pueden aplicar desde el día siguiente. Escribime la palabra CLASE y te cuento.</p>
+  <a class="btn" href="mailto:hola@tunuevamilla.com?subject=CLASE&body=Hola%20Nacho%2C%20vi%20los%20prompts%20de%20Tu%20Nueva%20Milla%20y%20me%20interesa%20la%20clase%20para%20mi%20equipo." target="_blank" rel="noopener" data-cta>Escribime CLASE</a>
+  <a class="alt" href="/">Conocé Tu Nueva Milla →</a>
+</section>
+</main>
+
+<footer>Tu Nueva Milla · IA en criollo, sin humo · Rosario · <a href="/">tunuevamilla.com</a></footer>
+<div class="toast" role="status" aria-live="polite">¡Copiado! Pegalo en tu IA 🙌</div>
+
+<script>
+(function(){
+  var toast=document.querySelector('.toast'),t;
+  function track(name,data,vpath){try{if(window.va){window.va('event',{name:name,data:data});if(vpath){window.va('pageview',{route:vpath,path:vpath})}}}catch(e){}}
+  function show(){toast.classList.add('show');clearTimeout(t);t=setTimeout(function(){toast.classList.remove('show')},2200)}
+  function fallback(text){var ta=document.createElement('textarea');ta.value=text;ta.setAttribute('readonly','');ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy')}catch(e){}document.body.removeChild(ta)}
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var card=btn.closest('.card'),text=card.querySelector('[data-prompt]').innerText.trim();
+      if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(text).catch(function(){fallback(text)})}else{fallback(text)}
+      var label=btn.querySelector('span');btn.classList.add('ok');label.textContent='¡Copiado!';
+      setTimeout(function(){btn.classList.remove('ok');label.textContent='Copiar prompt'},2000);
+      show();track('copiar_prompt',{prompt:'p'+btn.dataset.id,origen:location.pathname},'/_medicion'+location.pathname.replace(/\/$/,'')+'/copia-p'+btn.dataset.id);
+    });
+  });
+  var cta=document.querySelector('[data-cta]');
+  if(cta)cta.addEventListener('click',function(){track('click_clase',{origen:location.pathname},'/_medicion'+location.pathname.replace(/\/$/,'')+'/clase')});
+})();
+</script>
+</body>
+</html>
