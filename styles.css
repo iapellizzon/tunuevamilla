@@ -358,6 +358,16 @@ html[data-theme="dark"] .theme-toggle .i-moon{display:none}
 .form-status{font-size:var(--fs-small);min-height:1.2em;margin:0;text-align:center;color:var(--text-muted)}
 .form-status[data-state="success"],.form-status[data-state="error"]{color:var(--text);font-weight:500}
 .form-status a{color:var(--text-accent);text-decoration:underline}
+/* Pantalla de "mensaje enviado" (la arma script.js dentro del modal) */
+.modal-success{display:none;flex-direction:column;align-items:flex-start}
+.modal.is-sent>:not(.modal-close):not(.modal-success),.modal.is-sent #contactForm{display:none}
+.modal.is-sent .modal-success{display:flex;animation:modal-success-in .32s var(--ease-pop) both}
+.modal-success__icon{display:flex;align-items:center;justify-content:center;width:56px;height:56px;border-radius:50%;background:var(--grad-aurora);color:var(--ink);margin-bottom:18px}
+.modal-success__icon svg{width:28px;height:28px}
+.modal-success__title{outline:none}
+.modal-success .modal-lead{overflow-wrap:anywhere}
+@keyframes modal-success-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.modal.is-sent .modal-success{animation:none}}
 @media (max-width:480px){.modal{padding:28px 22px 24px;border-radius:16px}}
 
 /* ---------- Nav: links de navegación ---------- */

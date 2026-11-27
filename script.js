@@ -49,7 +49,40 @@
     // Cada botón puede traer data-contact-message (texto precargado en el mensaje) y
     // data-contact-topic (se agrega al asunto del mail). Sin esos atributos, el modal
     // queda como siempre ("Charlemos").
+    // Pantalla de "mensaje enviado": reemplaza al formulario dentro del mismo modal
+    // y queda visible hasta que la persona la cierra (no se cierra sola).
+    const success = document.createElement('div');
+    success.className = 'modal-success';
+    success.innerHTML =
+      '<span class="modal-success__icon" aria-hidden="true">' +
+        '<svg viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>' +
+      '</span>' +
+      '<div class="tnm-eyebrow">Mensaje enviado</div>' +
+      '<h3 class="modal-success__title" tabindex="-1"></h3>' +
+      '<p class="modal-lead modal-success__text"></p>' +
+      '<button type="button" class="tnm-btn tnm-btn--primary tnm-btn--block modal-success__close">Cerrar</button>';
+    modal.appendChild(success);
+    const successTitle = success.querySelector('.modal-success__title');
+    const successText = success.querySelector('.modal-success__text');
+
+    const showSuccess = (name, email) => {
+      successTitle.textContent = name ? '¡Listo, ' + name + '!' : '¡Listo!';
+      successText.textContent = email
+        ? 'Recibí tu mensaje. Te respondo yo mismo a ' + email + '.'
+        : 'Recibí tu mensaje. Te respondo yo mismo a tu correo.';
+      modal.classList.add('is-sent');
+      modal.scrollTop = 0;
+      successTitle.focus();
+    };
+
+    const resetSuccess = () => {
+      modal.classList.remove('is-sent');
+      status.removeAttribute('data-state');
+      status.textContent = '';
+    };
+
     const openModal = (trigger) => {
+      resetSuccess();
       const prefill = (trigger && trigger.dataset && trigger.dataset.contactMessage) || '';
       currentTopic = (trigger && trigger.dataset && trigger.dataset.contactTopic) || '';
       if (prefill) {
@@ -84,7 +117,9 @@
         return;
       }
       if (e.key === 'Tab') {
-        const focusables = Array.from(modal.querySelectorAll(focusableSelector));
+        // solo lo visible: con la pantalla de "enviado", el formulario queda oculto
+        const focusables = Array.from(modal.querySelectorAll(focusableSelector))
+          .filter((el) => el.getClientRects().length > 0);
         if (!focusables.length) return;
         const first = focusables[0];
         const last = focusables[focusables.length - 1];
@@ -105,6 +140,7 @@
       });
     });
     closeBtn.addEventListener('click', closeModal);
+    success.querySelector('.modal-success__close').addEventListener('click', closeModal);
     overlay.addEventListener('click', (e) => {
       if (e.target === overlay) closeModal();
     });
@@ -146,16 +182,17 @@
         const json = await res.json();
 
         if (res.ok && json.success) {
-          status.dataset.state = 'success';
-          status.textContent = '¡Listo! Recibí tu mensaje, te respondo pronto a tu correo.';
+          showSuccess(senderName, data.email);
           form.reset();
-          setTimeout(closeModal, 2200);
+          lastPrefill = '';
         } else {
           throw new Error(json.message || 'submit failed');
         }
       } catch (err) {
         status.dataset.state = 'error';
         status.innerHTML = 'No se pudo enviar. Escribime directo a <a href="mailto:hola@tunuevamilla.com">hola@tunuevamilla.com</a>.';
+        // en pantallas bajas el aviso queda debajo del botón: lo traemos a la vista
+        status.scrollIntoView({ block: 'nearest' });
       } finally {
         submitBtn.disabled = false;
         submitBtn.querySelector('.btn-label').textContent = 'Enviar mensaje';
