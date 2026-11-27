@@ -57,6 +57,7 @@
   --nav-bg:rgba(244,245,247,.82);
   --overlay:rgba(18,17,20,.6);
   --focus-ring:var(--blue-ink);
+  --danger:#B42335;
   --node-fill:var(--white);
   color-scheme:light;
 }
@@ -80,6 +81,7 @@ html[data-theme="dark"]{--band:#232228}
   --nav-bg:rgba(18,17,20,.82);
   --overlay:rgba(0,0,0,.7);
   --focus-ring:var(--aqua);
+  --danger:#FF8F9C;
   --node-fill:var(--ink);
   color-scheme:dark;
 }
@@ -358,6 +360,14 @@ html[data-theme="dark"] .theme-toggle .i-moon{display:none}
 .form-status{font-size:var(--fs-small);min-height:1.2em;margin:0;text-align:center;color:var(--text-muted)}
 .form-status[data-state="success"],.form-status[data-state="error"]{color:var(--text);font-weight:500}
 .form-status a{color:var(--text-accent);text-decoration:underline}
+/* Validación del formulario (avisos que arma script.js debajo de cada campo) */
+.tnm-field input[aria-invalid="true"],.tnm-field textarea[aria-invalid="true"]{border-color:var(--danger)}
+.field-error{margin:-10px 0 0;font-size:var(--fs-small);line-height:1.4;color:var(--danger);font-weight:500}
+.email-suggest{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;margin:-8px 0 0;padding:10px 12px;border-radius:var(--radius-md);background:var(--bg-subtle);font-size:var(--fs-small);color:var(--text);overflow-wrap:anywhere}
+.email-suggest[hidden]{display:none}
+.email-suggest__actions{display:flex;gap:8px}
+.email-suggest__btn{font:inherit;font-weight:600;color:var(--text);background:transparent;border:1.5px solid var(--border);border-radius:var(--radius-pill);min-height:36px;padding:4px 12px;cursor:pointer;transition:border-color .2s var(--ease),background-color .2s var(--ease)}
+.email-suggest__btn:hover{border-color:var(--border-hover);background:var(--btn-ghost-hover)}
 /* Pantalla de "mensaje enviado" (la arma script.js dentro del modal) */
 .modal-success{display:none;flex-direction:column;align-items:flex-start}
 .modal.is-sent>:not(.modal-close):not(.modal-success),.modal.is-sent #contactForm{display:none}
