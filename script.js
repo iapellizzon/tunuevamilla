@@ -189,10 +189,23 @@
           throw new Error(json.message || 'submit failed');
         }
       } catch (err) {
+        // Plan B si Web3Forms falla: abrimos el correo de la persona con el mensaje
+        // ya escrito para hola@, y dejamos un link por si el navegador no lo abre solo.
+        const firma = senderName ? '\n\n— ' + senderName + (data.email ? ' (' + data.email + ')' : '') : '';
+        const mailto = 'mailto:hola@tunuevamilla.com'
+          + '?subject=' + encodeURIComponent(data.subject)
+          + '&body=' + encodeURIComponent(data.message + firma);
+
         status.dataset.state = 'error';
-        status.innerHTML = 'No se pudo enviar. Escribime directo a <a href="mailto:hola@tunuevamilla.com">hola@tunuevamilla.com</a>.';
+        status.textContent = '';
+        const link = document.createElement('a');
+        link.href = mailto;
+        link.textContent = 'Abrir mi correo con el mensaje';
+        status.append('No se pudo enviar desde acá. ', link,
+          ' (ya va escrito) o escribime a hola@tunuevamilla.com.');
         // en pantallas bajas el aviso queda debajo del botón: lo traemos a la vista
         status.scrollIntoView({ block: 'nearest' });
+        window.location.href = mailto;
       } finally {
         submitBtn.disabled = false;
         submitBtn.querySelector('.btn-label').textContent = 'Enviar mensaje';
