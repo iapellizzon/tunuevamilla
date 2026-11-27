@@ -173,20 +173,32 @@
       status.removeAttribute('data-state');
       status.textContent = '';
 
-      try {
+      // Web3Forms a veces rechaza un envío válido y acepta el siguiente: probamos
+      // hasta 3 veces (con una pausa corta) antes de pasar al plan B.
+      const send = async () => {
         const res = await fetch('https://api.web3forms.com/submit', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
           body: JSON.stringify(data),
         });
-        const json = await res.json();
+        const json = await res.json().catch(() => ({}));
+        return res.ok && json.success ? json : Promise.reject(new Error(json.message || 'submit failed'));
+      };
 
-        if (res.ok && json.success) {
+      try {
+        let lastError;
+        let sent = false;
+        for (let attempt = 0; attempt < 3 && !sent; attempt++) {
+          if (attempt) await new Promise((r) => setTimeout(r, 1200));
+          try { await send(); sent = true; } catch (e) { lastError = e; }
+        }
+
+        if (sent) {
           showSuccess(senderName, data.email);
           form.reset();
           lastPrefill = '';
         } else {
-          throw new Error(json.message || 'submit failed');
+          throw lastError;
         }
       } catch (err) {
         // Plan B si Web3Forms falla: abrimos el correo de la persona con el mensaje
