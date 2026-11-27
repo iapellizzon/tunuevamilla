@@ -198,7 +198,10 @@
       // al salir del campo avisamos si está mal (no mientras escribe)
       input.addEventListener('blur', () => {
         if (input.value.trim() || input.hasAttribute('aria-invalid')) validateField(key);
-        if (key === 'email' && !input.hasAttribute('aria-invalid')) checkSuggestion();
+        if (key === 'email' && input.value.trim() && !input.hasAttribute('aria-invalid')) {
+          checkSuggestion();
+          checkEmailDomain(); // avisa apenas sale del campo si el dominio no existe
+        }
       });
       // si ya estaba marcado con error, se limpia apenas lo corrige
       input.addEventListener('input', () => {
@@ -206,6 +209,43 @@
         if (key === 'email' && !suggestBox.hidden) { suggestBox.hidden = true; pendingSuggestion = null; }
       });
     });
+
+    // ¿El dominio del mail recibe correo? Consultamos sus registros MX por DNS
+    // (Cloudflare DNS over HTTPS; solo viaja el dominio, nunca el mail completo).
+    // No confirma que la casilla exista, pero frena dominios inventados o mal escritos.
+    // Si la consulta falla (sin conexión, bloqueo), no frenamos el envío.
+    const mxCache = {};
+    const domainAcceptsMail = async (domain) => {
+      if (domain in mxCache) return mxCache[domain];
+      try {
+        const ctrl = new AbortController();
+        const timer = setTimeout(() => ctrl.abort(), 4000);
+        const res = await fetch('https://cloudflare-dns.com/dns-query?name=' + encodeURIComponent(domain) + '&type=MX', {
+          headers: { accept: 'application/dns-json' },
+          signal: ctrl.signal,
+        });
+        clearTimeout(timer);
+        const json = await res.json();
+        if (json.Status !== 0 && json.Status !== 3) return true; // respuesta rara: no frenamos
+        // "0 ." es un MX nulo: el dominio declara que no recibe correo
+        const mx = (json.Answer || []).filter((a) => a.type === 15 && !/^0\s+\.$/.test(String(a.data).trim()));
+        mxCache[domain] = json.Status === 0 && mx.length > 0;
+        return mxCache[domain];
+      } catch (e) {
+        return true;
+      }
+    };
+    const checkEmailDomain = async () => {
+      const value = fields.email.value.trim();
+      if (!EMAIL_RE.test(value)) return false;
+      const domain = value.slice(value.lastIndexOf('@') + 1).toLowerCase();
+      const ok = await domainAcceptsMail(domain);
+      if (fields.email.value.trim() !== value) return ok; // ya lo cambió mientras chequeábamos
+      if (!ok) {
+        setError('email', 'Ese mail no puede recibir correos: “' + domain + '” no existe o no tiene casillas. Revisá cómo lo escribiste.');
+      }
+      return ok;
+    };
 
     const validateAll = () => {
       const allOk = Object.keys(fields).map(validateField).every(Boolean);
@@ -310,6 +350,17 @@
 
       // todos los campos son obligatorios; si algo falta o está mal, no se envía
       if (!validateAll()) return;
+
+      // y que el dominio del mail exista y reciba correo
+      submitBtn.disabled = true;
+      submitBtn.querySelector('.btn-label').textContent = 'Verificando…';
+      const domainOk = await checkEmailDomain();
+      submitBtn.disabled = false;
+      submitBtn.querySelector('.btn-label').textContent = 'Enviar mensaje';
+      if (!domainOk) {
+        fields.email.focus();
+        return;
+      }
 
       // Asunto único por consulta (nombre + tema) para que cada contacto entre como
       // un mail nuevo y Gmail no los agrupe a todos en la misma conversación.
