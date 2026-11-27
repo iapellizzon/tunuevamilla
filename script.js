@@ -120,13 +120,14 @@
         return;
       }
 
+      // Asunto único por consulta (nombre + tema) para que cada contacto entre como
+      // un mail nuevo y Gmail no los agrupe a todos en la misma conversación.
+      const senderName = form.name.value.trim();
       const data = {
         access_key: WEB3FORMS_ACCESS_KEY,
-        subject: currentTopic
-          ? 'Nuevo contacto desde tunuevamilla.com: ' + currentTopic
-          : 'Nuevo contacto desde tunuevamilla.com',
+        subject: 'Nuevo contacto: ' + (senderName || 'sin nombre') + (currentTopic ? ' · ' + currentTopic : ''),
         from_name: 'Tu Nueva Milla — Landing',
-        name: form.name.value.trim(),
+        name: senderName,
         email: form.email.value.trim(),
         message: form.message.value.trim(),
       };
